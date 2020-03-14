@@ -46,7 +46,7 @@ def get_from_countries_covid(soup, top):
         if 'Russia' in country:
             table_data.append([country, cases, new_cases, deaths, new_deaths])
             text += f'{country}: {cases} заболевших \n\n'
-    text += 'Если у вас есть предложение по функционалу, пишите @iRootPro.\n Telegram-канал о здоровье @health_life, instagram ЗОЖ в картинках https://instagram.com/iroot'
+    text += 'Если у вас есть предложение по функционалу, пишите @iRootPro.\nTelegram-канал о здоровье @health_life, instagram ЗОЖ в картинках https://instagram.com/iroot'
 
     table = AsciiTable(table_data)
     return text
