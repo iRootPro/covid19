@@ -9,7 +9,6 @@ def get_date_and_time():
 
 def create_graph(table):
 	df = pd.DataFrame(table, columns=['Страны', 'Cases', 'Deaths'])
-	print(df)
 
 	fig = px.bar(df, x = "Cases", y = "Страны", 
 		title=f"Зараженные COVID-19. TOP20 + RU {get_date_and_time()}", 
