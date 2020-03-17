@@ -26,6 +26,7 @@ def get_from_countries_covid(soup, top):
     table_data = [['Страна', 'Заболевших',
                    'Новых заболевших', 'Умерших', 'Новых умерших']]
     text = ''
+    data = []
     for tr in trs:
         top -= 1
         tds = tr.find_all('td')
@@ -37,16 +38,17 @@ def get_from_countries_covid(soup, top):
         new_cases = tds[2].get_text()
         deaths = tds[3].get_text()
         new_deaths = tds[4].get_text()
-
+        
         if top >= 0:
             table_data.append([country, cases, new_cases, deaths, new_deaths])
             text += f'{country}: {cases} заболевших \n\n'
+            data.append([country, cases, deaths])
         if 'Russia' in table_data:
             break
         if 'Russia' in country:
             table_data.append([country, cases, new_cases, deaths, new_deaths])
             text += f'{country}: {cases} заболевших \n\n'
+            data.append([country, cases, deaths])
     text += 'Если у вас есть предложение по функционалу, пишите @iRootPro.\nTelegram-канал о здоровье @health_life, instagram ЗОЖ в картинках https://instagram.com/iroot'
-
     table = AsciiTable(table_data)
-    return text
+    return data
