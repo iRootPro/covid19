@@ -14,9 +14,11 @@ def get_html(url):
 
 
 def get_total_covid(soup):
-    div_total = soup.find('div', class_='maincounter-number')
-    total = div_total.find('span').get_text()
-    return total
+    div_total = soup.find_all('div', class_='maincounter-number')
+    total_cases = div_total[0].find('span').get_text()
+    total_deaths = div_total[1].find('span').get_text()
+    total_recovery = div_total[2].find('span').get_text()
+    return total_cases, total_deaths, total_recovery
 
 
 def get_from_countries_covid(soup, top):

@@ -1,5 +1,6 @@
 from telegram.ext import Updater, CommandHandler
 
+
 from parse import get_html, get_total_covid, get_from_countries_covid
 
 def start(update, context):
@@ -8,7 +9,9 @@ def start(update, context):
 
 def info(update, context):
 	url = 'https://www.worldometers.info/coronavirus/'
-	context.bot.send_message(chat_id=update.effective_chat.id, text=f'Всего заболевших: {get_total_covid(get_html(url))}')
+	total_cases, total_deaths, total_recovery = get_total_covid(get_html(url))
+	context.bot.send_message(chat_id=update.effective_chat.id, text=f'Всего заболевших: {total_cases}, \
+		умерло: {total_deaths}, выздоровели: {total_recovery}')
 
 def top(update, context):
 	url = 'https://www.worldometers.info/coronavirus/'
