@@ -14,7 +14,8 @@ def main():
     # print(f'Всего заболевших: {total}')
     table = parse.get_from_countries_covid(parse.get_html(url), 20)
     graph.create_graph(table)
-    tg.launch_bot(TELEGRAM_TOKEN)
+    graph.create_graph_deaths(table)
+    #tg.launch_bot(TELEGRAM_TOKEN)
 
 if __name__ == '__main__':
     load_dotenv()
