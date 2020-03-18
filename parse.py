@@ -20,7 +20,7 @@ def get_total_covid(soup):
 
 
 def get_from_countries_covid(soup, top):
-    table = soup.find('table', id='main_table_countries').find('tbody')
+    table = soup.find('table', id='main_table_countries_today').find('tbody')
     trs = table.find_all('tr')
 
     table_data = [['Страна', 'Заболевших',
