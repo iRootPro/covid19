@@ -17,8 +17,9 @@ def get_total_covid(soup):
     div_total = soup.find_all('div', class_='maincounter-number')
     total_cases = div_total[0].find('span').get_text()
     total_deaths = div_total[1].find('span').get_text()
+    deaths_percent = 100*total_deaths/total_cases
     total_recovery = div_total[2].find('span').get_text()
-    return total_cases, total_deaths, total_recovery
+    return total_cases, total_deaths, total_recovery, deaths_percent
 
 
 def get_from_countries_covid(soup, top):
@@ -54,4 +55,3 @@ def get_from_countries_covid(soup, top):
     text += 'Если у вас есть предложение по функционалу, пишите @iRootPro.\nTelegram-канал о здоровье @health_life, instagram ЗОЖ в картинках https://instagram.com/iroot'
     table = AsciiTable(table_data)
     return data
-    

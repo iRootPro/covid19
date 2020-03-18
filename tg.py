@@ -5,14 +5,14 @@ from parse import get_html, get_total_covid, get_from_countries_covid
 
 def start(update, context):
     context.bot.send_message(chat_id=update.effective_chat.id,
-                             text="Привет. Я бот COVID-19. Я расскажу о статистике по заболеваемости короновирусом. Наберите /info - для получения общего количества заболевших, /top - выведет TOP 10 стран по заболеваемости")
+                             text="Привет. Я бот COVID-19. Я расскажу о статистике по заболеваемости короновирусом. Наберите / - для получения списка команд")
 
 
 def info(update, context):
 	url = 'https://www.worldometers.info/coronavirus/'
-	total_cases, total_deaths, total_recovery = get_total_covid(get_html(url))
-	context.bot.send_message(chat_id=update.effective_chat.id, text=f'Всего заболевших: {total_cases}, \
-		умерло: {total_deaths}, выздоровели: {total_recovery}')
+	total_cases, total_deaths, total_recovery, deaths_percent = get_total_covid(get_html(url))
+	context.bot.send_message(chat_id=update.effective_chat.id, text=f'Всего заболевших: {total_cases}.\
+		Умерло: {total_deaths}({deaths_percent}%). Выздоровели: {total_recovery}')
 
 
 def top(update, context):
