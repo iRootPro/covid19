@@ -17,13 +17,18 @@ def top(update, context):
 def top20_img(update, context):
 	context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('cases_top20.png', 'rb'))
 
+def deaths(update,context):
+	context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('deaths.png', 'rb'))
+
 def launch_bot(token_telegram):
     updater = Updater(token=token_telegram, use_context=True)
     start_handler = CommandHandler('start', start)
     info_handler = CommandHandler('info', info)
     top_handler = CommandHandler('top', top)
     top20_img_handler = CommandHandler('top20_img', top20_img)
+    deaths_handler = CommandHandler('deaths', deaths)
     dispatcher = updater.dispatcher
+    dispatcher.add_handler(deaths_handler)
     dispatcher.add_handler(top20_img_handler)
     dispatcher.add_handler(top_handler)
     dispatcher.add_handler(info_handler)
