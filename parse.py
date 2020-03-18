@@ -54,3 +54,4 @@ def get_from_countries_covid(soup, top):
     text += 'Если у вас есть предложение по функционалу, пишите @iRootPro.\nTelegram-канал о здоровье @health_life, instagram ЗОЖ в картинках https://instagram.com/iroot'
     table = AsciiTable(table_data)
     return data
+    
