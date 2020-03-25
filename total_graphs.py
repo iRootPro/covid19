@@ -20,7 +20,7 @@ def main():
 
 	cases_fig.write_image("total_cases.png")
 	deaths_fig.write_image('total_deaths.png')
-	total_recovered.write_image('total_recovered.png')
+	recovered_fig.write_image('total_recovered.png')
 
 
 if __name__ == '__main__':
