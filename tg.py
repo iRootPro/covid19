@@ -2,7 +2,7 @@ from telegram.ext import Updater, CommandHandler
 
 
 from parse import get_html, get_total_covid, get_from_countries_covid
-from subscribe import add_member
+from subscribe import add_member, check_member
 
 
 def start(update, context):
@@ -39,8 +39,12 @@ def russia(update, context):
 	context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('russian_cases.png', 'rb'))
 
 def subscribe(update, context):
-	add_member(update.effective_chat.id)
-	context.bot.send_message(chat_id=update.effective_chat.id, text='Вы подписаны на рассылку.')
+	if check_member(chat_id):
+		context.bot.send_message(chat_id=update.effective_chat.id, text='Вы уже подписались на ранее')
+	else:
+		add_member(chat_id)
+		context.bot.send_message(chat_id=update.effective_chat.id, text='Вы успешно подписаны на рассылку.')
+	
 
 
 def launch_bot(token_telegram):
