@@ -28,6 +28,12 @@ def deaths(update,context):
 	context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('deaths.png', 'rb'))
 
 
+def total(update, context):
+	context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('total_cases.png', 'rb'))
+	context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('total_deaths.png', 'rb'))
+	context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('total_recovered.png', 'rb'))
+
+
 def launch_bot(token_telegram):
     updater = Updater(token=token_telegram, use_context=True)
     start_handler = CommandHandler('start', start)
@@ -35,10 +41,12 @@ def launch_bot(token_telegram):
     top_handler = CommandHandler('top', top)
     top20_img_handler = CommandHandler('top20_img', top20_img)
     deaths_handler = CommandHandler('deaths', deaths)
+    total_handler = CommandHandler('total', total)
     dispatcher = updater.dispatcher
     dispatcher.add_handler(deaths_handler)
     dispatcher.add_handler(top20_img_handler)
     dispatcher.add_handler(top_handler)
     dispatcher.add_handler(info_handler)
     dispatcher.add_handler(start_handler)
+    dispatcher.add_handler(total_handler)
     updater.start_polling()
