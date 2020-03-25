@@ -39,7 +39,6 @@ def russia(update, context):
 	context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('russian_cases.png', 'rb'))
 
 def subscribe(update, context):
-	context.bot.send_message(chat_id=update.effective_chat.id, text='Вы подписаны на рассылку.')
 	add_member(update.effective_chat.id)
 	context.bot.send_message(chat_id=update.effective_chat.id, text='Вы подписаны на рассылку.')
 
