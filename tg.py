@@ -2,6 +2,8 @@ from telegram.ext import Updater, CommandHandler
 
 
 from parse import get_html, get_total_covid, get_from_countries_covid
+from subscribe import add_member
+
 
 def start(update, context):
     context.bot.send_message(chat_id=update.effective_chat.id,
@@ -36,6 +38,10 @@ def total(update, context):
 def russia(update, context):
 	context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('russian_cases.png', 'rb'))
 
+def subscribe(update, context):
+	add_member(update.effective_chat.id)
+	context.bot.send_message(chat_id=update.effective_chat.id, text='Вы подписаны на рассылку.')
+
 
 def launch_bot(token_telegram):
     updater = Updater(token=token_telegram, use_context=True)
@@ -46,6 +52,7 @@ def launch_bot(token_telegram):
     deaths_handler = CommandHandler('deaths', deaths)
     total_handler = CommandHandler('total', total)
     russia_handler = CommandHandler('russia', russia)
+    subscribe_handler = CommandHandler('subscribe', subscribe)
     dispatcher = updater.dispatcher
     dispatcher.add_handler(deaths_handler)
     dispatcher.add_handler(top20_img_handler)
@@ -54,4 +61,5 @@ def launch_bot(token_telegram):
     dispatcher.add_handler(start_handler)
     dispatcher.add_handler(total_handler)
     dispatcher.add_handler(russia_handler)
+    dispatcher.add_handler(subscribe_handler)
     updater.start_polling()
