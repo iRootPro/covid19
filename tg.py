@@ -45,7 +45,7 @@ def launch_bot(token_telegram):
     top20_img_handler = CommandHandler('top20_img', top20_img)
     deaths_handler = CommandHandler('deaths', deaths)
     total_handler = CommandHandler('total', total)
-    russian_handler = CommandHandler('russian', russian)
+    russia_handler = CommandHandler('russia', russia)
     dispatcher = updater.dispatcher
     dispatcher.add_handler(deaths_handler)
     dispatcher.add_handler(top20_img_handler)
@@ -53,5 +53,5 @@ def launch_bot(token_telegram):
     dispatcher.add_handler(info_handler)
     dispatcher.add_handler(start_handler)
     dispatcher.add_handler(total_handler)
-    dispatcher.add_handler(russian_handler)
+    dispatcher.add_handler(russia_handler)
     updater.start_polling()
