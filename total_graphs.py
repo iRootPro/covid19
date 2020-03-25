@@ -18,9 +18,18 @@ def main():
 	recovered_fig = px.line(total_recovered, x = 'Дата', y = 'Выздоровевшие', height = 800, width = 600,
 		title = 'График по выздоровевшим от COVID-19')
 
+	russia = pd.read_csv('db/countries.csv', delimiter=';', 
+		names=['Дата', 'Страна', 'Случаи', 'Умершие', 'Выздоровевшие'])
+	rus_case = russia[['Дата', 'Случаи']]
+	rus_fig = px.line(rus_case, x = 'Дата', y = 'Случаи', width = 800, height = 800,
+                 title = 'График заражения в России')
+
 	cases_fig.write_image("total_cases.png")
 	deaths_fig.write_image('total_deaths.png')
 	recovered_fig.write_image('total_recovered.png')
+	rus_fig.write_image('russian_cases.png')
+
+
 
 
 if __name__ == '__main__':
