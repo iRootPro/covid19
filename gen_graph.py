@@ -4,42 +4,42 @@ import datetime
 
 import parse
 
+
 def get_date_and_time():
-	today = datetime.datetime.today()
-	date_and_time_today = today.strftime("%d.%m.%Y %H:%M")
-	return date_and_time_today
+    today = datetime.datetime.today()
+    date_and_time_today = today.strftime("%d.%m.%Y %H:%M")
+    return date_and_time_today
 
-def create_graph(table):
-	df = pd.DataFrame(table, columns=['Страны', 'Cases', 'Deaths'])
 
-	fig = px.bar(df, x = "Cases", y = "Страны", 
-		title=f"Зараженные COVID-19. TOP20 + RU {get_date_and_time()}", 
-		orientation='h',
-		hover_data=['Deaths'], text='Cases',
-		height=800, width=600
-		)
-	fig.update_traces(textposition='auto')
-	fig.update_layout(uniformtext_minsize=8, uniformtext_mode='hide')
-	fig.write_image("cases_top20.png")
+def create_graph_cases():
+    countries = pd.read_csv('db/current_countries.csv', delimiter=';',
+                            thousands=',', names=['Data', 'Location', 'Case', 'Death', 'Recovered'])
+    top20_countries = countries[1:21]
 
-def create_graph_deaths(table):
-	df = pd.DataFrame(table, columns=['Страны', 'Cases', 'Deaths'])
-	 
-	fig = px.bar(df, x = "Deaths", y = "Страны",
-		title=f"Умершие от COVID-19. {get_date_and_time()}",
-		orientation='h', text='Deaths',
-		height=800, width=600
-		)
-	fig.update_traces(textposition='auto')
-	fig.update_layout(uniformtext_minsize=8, uniformtext_mode='hide')
-	fig.write_image("deaths.png")
+    fig = px.bar(top20_case, x=top20_case.Case, y=top20_case.Location, title=f"Зараженные COVID-19. TOP20", orientation='h',
+                 height=800, width=600, text=top20_case.Case)
+    fig.update_traces(textposition='auto')
+    fig.update_layout(uniformtext_minsize=8, uniformtext_mode='hide')
+    fig.write_image("cases_top20.png")
+
+
+def create_graph_deaths():
+    countries = pd.read_csv('db/current_countries.csv', delimiter=';',
+                            thousands=',', names=['Data', 'Location', 'Case', 'Death', 'Recovered'])
+    countries.fillna(0, inplace=True)
+    top20_death = countries.sort_values('Death', ascending=False)[1:21]
+
+    death_fig = px.bar(top20_death, x=top20_death.Death, y=top20_death.Location, title=f"Умершие от COVID-19.\nTOP20 стран", orientation='h',
+                       height=800, width=600, text=top20_death.Death)
+    death_fig.update_traces(textposition='auto')
+    death_fig.update_layout(uniformtext_minsize=8, uniformtext_mode='hide')
+    death_fig.write_image("deaths.png")
 
 
 def main():
-	url = 'https://www.worldometers.info/coronavirus/'
-	table = parse.get_from_countries_covid(parse.get_html(url), 20)
-	create_graph(table)
-	create_graph_deaths(table)
+    create_graph_cases()
+    create_graph_deaths()
+
 
 if __name__ == '__main__':
-	main()
+    main()

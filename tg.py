@@ -11,50 +11,62 @@ def start(update, context):
 
 
 def info(update, context):
-	url = 'https://www.worldometers.info/coronavirus/'
-	total_cases, total_deaths, total_recovery = get_total_covid(get_html(url))
-	text_answer = text=f'<u>Ситуация в мире:</u>\nВсего заболевших: {total_cases}\nУмерших: {total_deaths}\nВыздоровевших: {total_recovery}'
-	context.bot.send_message(chat_id=update.effective_chat.id, text=text_answer, parse_mode='html')
+    url = 'https://www.worldometers.info/coronavirus/'
+    total_cases, total_deaths, total_recovery = get_total_covid(get_html(url))
+    text_answer = text = f'<u>Ситуация в мире:</u>\nВсего заболевших: {total_cases}\nУмерших: {total_deaths}\nВыздоровевших: {total_recovery}'
+    context.bot.send_message(
+        chat_id=update.effective_chat.id, text=text_answer, parse_mode='html')
 
 
 def top(update, context):
-	url = 'https://www.worldometers.info/coronavirus/'
-	context.bot.send_message(chat_id=update.effective_chat.id, text=get_from_countries_covid(get_html(url), 10))
+    url = 'https://www.worldometers.info/coronavirus/'
+    context.bot.send_message(chat_id=update.effective_chat.id,
+                             text=get_from_countries_covid(get_html(url), 10))
 
 
 def top20_img(update, context):
-	context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('cases_top20.png', 'rb'))
+    context.bot.send_photo(chat_id=update.effective_chat.id,
+                           photo=open('cases_top20.png', 'rb'))
 
 
-def deaths(update,context):
-	context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('deaths.png', 'rb'))
+def deaths(update, context):
+    context.bot.send_photo(chat_id=update.effective_chat.id,
+                           photo=open('deaths.png', 'rb'))
 
 
 def total(update, context):
-	context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('total_cases.png', 'rb'))
-	context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('total_deaths.png', 'rb'))
-	context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('total_recovered.png', 'rb'))
+    context.bot.send_photo(chat_id=update.effective_chat.id,
+                           photo=open('total_cases.png', 'rb'))
+    context.bot.send_photo(chat_id=update.effective_chat.id,
+                           photo=open('total_deaths.png', 'rb'))
+    context.bot.send_photo(chat_id=update.effective_chat.id,
+                           photo=open('total_recovered.png', 'rb'))
+
 
 def russia(update, context):
-	case, death, recovered = get_country('Russia')
-	text_answer = f'<u>Ситуация в России:</u>\nВсего заболевших: {case}\nУмерших: {death}\nВыздоровевших: {recovered}'
-	context.bot.send_message(chat_id=update.effective_chat.id, text=text_answer, parse_mode='html')
-	context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('russian_cases.png', 'rb'))
+    case, death, recovered = get_country('Russia')
+    text_answer = f'<u>Ситуация в России:</u>\nВсего заболевших: {case}\nУмерших: {death}\nВыздоровевших: {recovered}'
+    context.bot.send_message(
+        chat_id=update.effective_chat.id, text=text_answer, parse_mode='html')
+    context.bot.send_photo(chat_id=update.effective_chat.id,
+                           photo=open('russian_cases.png', 'rb'))
 
 
 def ukraine(update, context):
-	case, death, recovered = get_country('Ukraine')
-	text_answer = f'<u>Ситуация на Украине:</u>\nВсего заболевших: {case}\nУмерших: {death}\nВыздоровевших: {recovered}'
-	context.bot.send_message(chat_id=update.effective_chat.id, text=text_answer, parse_mode='html')
+    case, death, recovered = get_country('Ukraine')
+    text_answer = f'<u>Ситуация на Украине:</u>\nВсего заболевших: {case}\nУмерших: {death}\nВыздоровевших: {recovered}'
+    context.bot.send_message(
+        chat_id=update.effective_chat.id, text=text_answer, parse_mode='html')
 
 
 def subscribe(update, context):
-	if check_member(update.effective_chat.id):
-		context.bot.send_message(chat_id=update.effective_chat.id, text='Вы уже подписались ранее')
-	else:
-		add_member(update.effective_chat.id)
-		context.bot.send_message(chat_id=update.effective_chat.id, text='Вы успешно подписаны на рассылку.')
-	
+    if check_member(update.effective_chat.id):
+        context.bot.send_message(
+            chat_id=update.effective_chat.id, text='Вы уже подписались ранее')
+    else:
+        add_member(update.effective_chat.id)
+        context.bot.send_message(
+            chat_id=update.effective_chat.id, text='Вы успешно подписаны на рассылку.')
 
 
 def launch_bot(token_telegram):
