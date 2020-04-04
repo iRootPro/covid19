@@ -24,12 +24,12 @@ def top(update, context):
                              text=get_from_countries_covid(get_html(url), 10))
 
 
-def top20_img(update, context):
+def top20_cases(update, context):
     context.bot.send_photo(chat_id=update.effective_chat.id,
                            photo=open('cases_top20.png', 'rb'))
 
 
-def deaths(update, context):
+def top20_deaths(update, context):
     context.bot.send_photo(chat_id=update.effective_chat.id,
                            photo=open('deaths.png', 'rb'))
 
@@ -74,15 +74,15 @@ def launch_bot(token_telegram):
     start_handler = CommandHandler('start', start)
     info_handler = CommandHandler('info', info)
     top_handler = CommandHandler('top', top)
-    top20_img_handler = CommandHandler('top20_img', top20_img)
-    deaths_handler = CommandHandler('deaths', deaths)
+    top20_cases_handler = CommandHandler('top20_cases', top20_cases)
+    top20_deaths_handler = CommandHandler('top20_deaths', top20_deaths)
     total_handler = CommandHandler('total', total)
     russia_handler = CommandHandler('russia', russia)
     ukraine_handler = CommandHandler('ukraine', ukraine)
     subscribe_handler = CommandHandler('subscribe', subscribe)
     dispatcher = updater.dispatcher
-    dispatcher.add_handler(deaths_handler)
-    dispatcher.add_handler(top20_img_handler)
+    dispatcher.add_handler(top20_deaths_handler)
+    dispatcher.add_handler(top20_cases_handler)
     dispatcher.add_handler(top_handler)
     dispatcher.add_handler(info_handler)
     dispatcher.add_handler(start_handler)
