@@ -1,7 +1,7 @@
 from telegram.ext import Updater, CommandHandler
 
 
-from parse import get_html, get_total_covid, get_from_countries_covid
+from parse import get_html, get_total_covid, get_from_countries_covid, get_country
 from subscribe import add_member, check_member
 
 
@@ -36,6 +36,9 @@ def total(update, context):
 	context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('total_recovered.png', 'rb'))
 
 def russia(update, context):
+	case, death, recovered = get_country('Russia')
+	text_answer = f'<u>Ситуация в России:</u>\nВсего заболевших: {case}\nУмерших: {death}\nВыздоровевших: {recovered}'
+	context.bot.send_message(chat_id=update.effective_chat.id, text=text_answer, parse_mode='html')
 	context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('russian_cases.png', 'rb'))
 
 def subscribe(update, context):

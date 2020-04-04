@@ -2,7 +2,8 @@ import requests
 from bs4 import BeautifulSoup
 import os
 from dotenv import load_dotenv
-from terminaltables import AsciiTable
+import numpy as np
+import pandas as pd 
 
 def get_html(url):
     user_agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) \
@@ -52,5 +53,14 @@ def get_from_countries_covid(soup, top):
             text += f'{country}: {cases} заболевших \n\n'
             data.append([country, cases, deaths])
     text += 'Если у вас есть предложение по функционалу, пишите @iRootPro.\nTelegram-канал о здоровье @health_life, instagram ЗОЖ в картинках https://instagram.com/iroot'
-    table = AsciiTable(table_data)
     return data
+
+def get_country(location):
+    countries = pd.read_csv('db/current_countries.csv', delimiter=';', names=['Data', 'Location', 'Case', 'Death', 'Recovered'])
+    country = countries[countries.Location == location]
+    country_case = country.Case.tolist()[0]
+    country_death = country.Death.tolist()[0]
+    country_recovered = country.Recovered.tolist()[0]
+
+    return country_case, country_death, country_recovered
+
