@@ -13,8 +13,8 @@ def start(update, context):
 def info(update, context):
 	url = 'https://www.worldometers.info/coronavirus/'
 	total_cases, total_deaths, total_recovery = get_total_covid(get_html(url))
-	text_answer = text=f'Всего заболевших: {total_cases}\nУмерших: {total_deaths}\nВыздоровевших: {total_recovery}'
-	context.bot.send_message(chat_id=update.effective_chat.id, text=text_answer)
+	text_answer = text=f'<u>Ситуация в мире:</u>\nВсего заболевших: {total_cases}\nУмерших: {total_deaths}\nВыздоровевших: {total_recovery}'
+	context.bot.send_message(chat_id=update.effective_chat.id, text=text_answer, parse_mode='html')
 
 
 def top(update, context):
