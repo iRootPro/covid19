@@ -46,7 +46,6 @@ def ukraine(update, context):
 	case, death, recovered = get_country('Ukraine')
 	text_answer = f'<u>Ситуация в России:</u>\nВсего заболевших: {case}\nУмерших: {death}\nВыздоровевших: {recovered}'
 	context.bot.send_message(chat_id=update.effective_chat.id, text=text_answer, parse_mode='html')
-	context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('russian_cases.png', 'rb'))
 
 
 def subscribe(update, context):
