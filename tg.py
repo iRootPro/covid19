@@ -44,7 +44,7 @@ def russia(update, context):
 
 def ukraine(update, context):
 	case, death, recovered = get_country('Ukraine')
-	text_answer = f'<u>Ситуация в России:</u>\nВсего заболевших: {case}\nУмерших: {death}\nВыздоровевших: {recovered}'
+	text_answer = f'<u>Ситуация на Украине:</u>\nВсего заболевших: {case}\nУмерших: {death}\nВыздоровевших: {recovered}'
 	context.bot.send_message(chat_id=update.effective_chat.id, text=text_answer, parse_mode='html')
 
 
