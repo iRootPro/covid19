@@ -41,6 +41,14 @@ def russia(update, context):
 	context.bot.send_message(chat_id=update.effective_chat.id, text=text_answer, parse_mode='html')
 	context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('russian_cases.png', 'rb'))
 
+
+def ukraine(update, context):
+	case, death, recovered = get_country('Ukraine')
+	text_answer = f'<u>Ситуация в России:</u>\nВсего заболевших: {case}\nУмерших: {death}\nВыздоровевших: {recovered}'
+	context.bot.send_message(chat_id=update.effective_chat.id, text=text_answer, parse_mode='html')
+	context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('russian_cases.png', 'rb'))
+
+
 def subscribe(update, context):
 	if check_member(update.effective_chat.id):
 		context.bot.send_message(chat_id=update.effective_chat.id, text='Вы уже подписались ранее')
@@ -59,6 +67,7 @@ def launch_bot(token_telegram):
     deaths_handler = CommandHandler('deaths', deaths)
     total_handler = CommandHandler('total', total)
     russia_handler = CommandHandler('russia', russia)
+    ukraine_handler = CommandHandler('ukraine', ukraine)
     subscribe_handler = CommandHandler('subscribe', subscribe)
     dispatcher = updater.dispatcher
     dispatcher.add_handler(deaths_handler)
@@ -68,5 +77,6 @@ def launch_bot(token_telegram):
     dispatcher.add_handler(start_handler)
     dispatcher.add_handler(total_handler)
     dispatcher.add_handler(russia_handler)
+    dispatcher.add_handler(ukraine_handler)
     dispatcher.add_handler(subscribe_handler)
     updater.start_polling()
