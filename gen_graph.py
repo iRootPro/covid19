@@ -14,7 +14,7 @@ def get_date_and_time():
 def create_graph_cases():
     countries = pd.read_csv('db/current_countries.csv', delimiter=';',
                             thousands=',', names=['Data', 'Location', 'Case', 'Death', 'Recovered'])
-    top20_countries = countries[1:21]
+    top20_case = countries[1:21]
 
     fig = px.bar(top20_case, x=top20_case.Case, y=top20_case.Location, title=f"Зараженные COVID-19. TOP20", orientation='h',
                  height=800, width=600, text=top20_case.Case)
