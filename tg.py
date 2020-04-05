@@ -13,7 +13,7 @@ def start(update, context):
 def info(update, context):
     url = 'https://www.worldometers.info/coronavirus/'
     total_cases, total_deaths, total_recovery = get_total_covid(get_html(url))
-    text_answer = text = f'<u>Ситуация в мире:</u>\nВсего заболевших: {total_cases}\nУмерших: {total_deaths}\nВыздоровевших: {total_recovery}'
+    text_answer = text = f'<u>Ситуация в мире:</u>\n🦠 Всего заболевших: {total_cases}\n⚰ Умерших: {total_deaths}\n👥 Выздоровевших: {total_recovery}'
     context.bot.send_message(
         chat_id=update.effective_chat.id, text=text_answer, parse_mode='html')
 
@@ -45,7 +45,7 @@ def total(update, context):
 
 def russia(update, context):
     case, death, recovered = get_country('Russia')
-    text_answer = f'<u>Ситуация в России:</u>\nВсего заболевших: {case}\nУмерших: {death}\nВыздоровевших: {recovered}'
+    text_answer = f'<u>Ситуация в России:</u>\n🦠 Всего заболевших: {case}\n⚰ Умерших: {death}\n👥 Выздоровевших: {recovered}'
     context.bot.send_message(
         chat_id=update.effective_chat.id, text=text_answer, parse_mode='html')
     context.bot.send_photo(chat_id=update.effective_chat.id,
@@ -54,7 +54,7 @@ def russia(update, context):
 
 def ukraine(update, context):
     case, death, recovered = get_country('Ukraine')
-    text_answer = f'<u>Ситуация на Украине:</u>\nВсего заболевших: {case}\nУмерших: {death}\nВыздоровевших: {recovered}'
+    text_answer = f'<u>Ситуация на Украине:</u>\n🦠 Всего заболевших: {case}\n⚰ Умерших: {death}\n👥 Выздоровевших: {recovered}'
     context.bot.send_message(
         chat_id=update.effective_chat.id, text=text_answer, parse_mode='html')
 
