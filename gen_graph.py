@@ -63,7 +63,7 @@ def create_graph_cases():
     )
     fig1.update_layout(width=600, height=800, uniformtext_minsize=8,
                        uniformtext_mode='hide', barmode='group')
-    fig1.write_image("cases_top10.png")
+    fig1.write_image("top10.png")
 
 
 def create_graph_deaths():
