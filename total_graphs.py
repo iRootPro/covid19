@@ -1,6 +1,9 @@
 import numpy as np
 import pandas as pd
 import plotly.express as px
+import plotly
+import time
+
 
 from graph import get_date_and_time
 
@@ -36,4 +39,6 @@ def main():
 
 
 if __name__ == '__main__':
+	plotly.io.orca.ensure_server()
+	time.sleep(10)
 	main()
