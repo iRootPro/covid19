@@ -67,7 +67,7 @@ def launch_bot(token_telegram):
     total_handler = CommandHandler('total', total)
     russia_handler = CommandHandler('russia', russia)
     subscribe_handler = CommandHandler('subscribe', subscribe)
-    message_handler = MessageHandler(Filter.text, message)
+    message_handler = MessageHandler(Filters.text, message)
     dispatcher = updater.dispatcher
     dispatcher.add_handler(top10_handler)
     dispatcher.add_handler(info_handler)
