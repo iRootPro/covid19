@@ -4,6 +4,7 @@ from telegram.ext import Updater, CommandHandler
 from parse import get_html, get_total_covid, get_from_countries_covid, get_country
 from subscribe import add_member, check_member
 from parse_rus import top10_russia
+from graph import get_date_and_time
 
 
 def start(update, context):
@@ -47,10 +48,11 @@ def total(update, context):
 def russia(update, context):
     case, death, recovered = get_country('Russia')
     text_answer = f'<u>Ситуация в России:</u>\n🦠 Всего заболевших: {case}\n⚰ Умерших: {death}\n👥 Выздоровевших: {recovered}'
+    text_detail_info = f'{top10_russia()}\n Данные на:{get_date_and_time()}'
     context.bot.send_message(
         chat_id=update.effective_chat.id, text=text_answer, parse_mode='html')
     context.bot.send_message(
-        chat_id=update.effective_chat.id, text=top10_russia(), parse_mode='markdown')
+        chat_id=update.effective_chat.id, text=text_detail_info, parse_mode='markdown')
     # context.bot.send_photo(chat_id=update.effective_chat.id,
     #                        photo=open('russian_cases.png', 'rb'))
 
