@@ -48,7 +48,7 @@ def total(update, context):
 def russia(update, context):
     case, death, recovered = get_country('Russia')
     text_answer = f'<u>Ситуация в России:</u>\n🦠 Всего заболевших: {case}\n⚰ Умерших: {death}\n👥 Выздоровевших: {recovered}'
-    text_detail_info = f'{top20_russia()}\n Данные на: {get_date_and_time()}'
+    text_detail_info = f'{top20_russia()}\n Задержка данных 2 часа'
     context.bot.send_message(
         chat_id=update.effective_chat.id, text=text_answer, parse_mode='html')
     context.bot.send_message(
