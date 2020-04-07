@@ -64,8 +64,7 @@ def main():
     create_graph_top10()
 
 
-
 if __name__ == '__main__':
-	plotly.io.orca.ensure_server()
-	time.sleep(10)
+    plotly.io.orca.ensure_server()
+    time.sleep(10)
     main()
