@@ -5,6 +5,7 @@ from parse import get_html, get_total_covid, get_from_countries_covid, get_count
 from subscribe import add_member, check_member
 from parse_rus import top20_russia
 from graph import get_date_and_time
+from answer import search_similar_question
 
 
 def start(update, context):
@@ -43,6 +44,10 @@ def russia(update, context):
     context.bot.send_message(
         chat_id=update.effective_chat.id, text=text_detail_info, parse_mode='markdown')
 
+def message(update, context):
+	answer = search_similar_question(update.message.text)
+	update.message.reply_text(answer)
+
 
 def subscribe(update, context):
     if check_member(update.effective_chat.id):
@@ -62,6 +67,7 @@ def launch_bot(token_telegram):
     total_handler = CommandHandler('total', total)
     russia_handler = CommandHandler('russia', russia)
     subscribe_handler = CommandHandler('subscribe', subscribe)
+    message_handler = MessageHandler(Filter.text, message)
     dispatcher = updater.dispatcher
     dispatcher.add_handler(top10_handler)
     dispatcher.add_handler(info_handler)
@@ -69,4 +75,6 @@ def launch_bot(token_telegram):
     dispatcher.add_handler(total_handler)
     dispatcher.add_handler(russia_handler)
     dispatcher.add_handler(subscribe_handler)
+    dispatcher.add_handler(message_handler)
     updater.start_polling()
+
