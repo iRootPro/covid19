@@ -37,7 +37,7 @@ def top10_russia():
     table = loc_today[1:11]
     markdown_table = tabulate(table, tablefmt='github', headers=[
                               'Локация', '🦠'], showindex=False, numalign='right')
-    return f'```{markdown_table}```'
+    return f'TOP20\n```{markdown_table}```'
 
 
 def main():
