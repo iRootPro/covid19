@@ -13,11 +13,6 @@ def start(update, context):
                              text="Привет. Я бот COVID-19. Я расскажу о статистике по заболеваемости короновирусом. Наберите / - для получения списка команд")
 
 
-def about(update, context):
-    context.bot.send_message(chat_id=update.effective_chat.id,
-                             text=info_covid19.what_corona, parse_mode='markdown')
-
-
 def info(update, context):
     url = 'https://www.worldometers.info/coronavirus/'
     total_cases, total_deaths, total_recovery = get_total_covid(get_html(url))
@@ -83,7 +78,6 @@ def subscribe(update, context):
 def launch_bot(token_telegram):
     updater = Updater(token=token_telegram, use_context=True)
     start_handler = CommandHandler('start', start)
-    about_handler = CommandHandler('about', about)
     info_handler = CommandHandler('info', info)
     top_handler = CommandHandler('top', top)
     top10_handler = CommandHandler('top10', top10)
@@ -93,7 +87,6 @@ def launch_bot(token_telegram):
     ukraine_handler = CommandHandler('ukraine', ukraine)
     subscribe_handler = CommandHandler('subscribe', subscribe)
     dispatcher = updater.dispatcher
-    dispatcher.add_handler(about_handler)
     dispatcher.add_handler(top20_deaths_handler)
     dispatcher.add_handler(top10_handler)
     dispatcher.add_handler(top_handler)
