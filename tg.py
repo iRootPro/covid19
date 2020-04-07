@@ -1,4 +1,4 @@
-from telegram.ext import Updater, CommandHandler
+from telegram.ext import Updater, CommandHandler, MessageHandler
 
 
 from parse import get_html, get_total_covid, get_from_countries_covid, get_country
