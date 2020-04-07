@@ -30,8 +30,9 @@ def get_info_cities(soup):
 def top10_russia():
     locations = pd.read_csv('db/russian.csv', delimiter=';', thousands=' ', names=['Data', 'Location', 'Case'])
     loc_today = locations[locations.Data == get_date()][['Location', 'Case']]
-    table = loc_today[1:11].to_markdown(showindex=False)
-    return table
+    table = loc_today[1:11]
+    html_table = tabulate(table, tablefmt='html', headers=['Локация', 'Зараженных'])
+    return html_table
 
 def main():
 	url = 'https://yandex.ru/web-maps/covid19'
