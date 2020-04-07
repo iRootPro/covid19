@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import tabulate
+import pandas as pd
 
 from data import get_date, write_to_csv
 
@@ -36,6 +37,7 @@ def main():
 	url = 'https://yandex.ru/web-maps/covid19'
 	cities = get_info_cities(get_html(url))
 	write_to_csv('russian.csv', cities)
+	
 
 
 if __name__ == '__main__':
