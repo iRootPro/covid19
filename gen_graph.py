@@ -55,7 +55,7 @@ def create_graph_top10():
             title='TOP-10 стран COVID-19'
         )
     )
-    fig1.update_layout(width=600, height=800, uniformtext_minsize=8,
+    fig1.update_layout(width=800, height=1200, uniformtext_minsize=8,
                        uniformtext_mode='hide', barmode='group')
     fig1.write_image("top10.png")
 
