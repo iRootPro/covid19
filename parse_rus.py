@@ -31,7 +31,7 @@ def get_info_cities(soup):
     return data
 
 
-def top10_russia():
+def top20_russia():
     locations = pd.read_csv('db/russian.csv', delimiter=';',
                             thousands=' ', names=['Data', 'Location', 'Case'])
     loc_today = locations[locations.Data == get_date()][['Location', 'Case']]
