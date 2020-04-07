@@ -36,7 +36,8 @@ def question_analyse(text):
 
 
 def search_similar_question(question_user):
-    normal_question_user, normal_questions_who = question_analyse(question_user)
+    normal_question_user, normal_questions_who = question_analyse(
+        question_user)
     scores = []
     for normal_question_who in normal_questions_who:
         scores.append(fuzz.token_sort_ratio(
@@ -45,9 +46,8 @@ def search_similar_question(question_user):
     questions = get_qanda()
     searched_question = questions[answer_number][0]
     searched_answer = questions[answer_number][1]
-    return f'{searched_question}\n {searched_answer}'
+    return f'{searched_question}\n{searched_answer}'
 
 
 answer = search_similar_question('что такое covid-19')
 print(answer)
-
