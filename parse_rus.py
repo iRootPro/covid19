@@ -45,7 +45,6 @@ def main():
     url = 'https://yandex.ru/web-maps/covid19'
     cities = get_info_cities(get_html(url))
     write_to_csv('russian.csv', cities)
-    print(cities)
 
 
 if __name__ == '__main__':
