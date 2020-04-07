@@ -36,7 +36,7 @@ def top10_russia():
     loc_today = locations[locations.Data == get_date()][['Location', 'Case']]
     table = loc_today[1:11]
     markdown_table = tabulate(table, tablefmt='github', headers=[
-                              'Локация', 'Кол-во'], showindex=False, numalign='right')
+                              'Локация', '🦠'], showindex=False, numalign='right')
     return f'```{markdown_table}```'
 
 

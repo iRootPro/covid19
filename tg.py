@@ -50,8 +50,8 @@ def russia(update, context):
     context.bot.send_message(
         chat_id=update.effective_chat.id, text=text_answer, parse_mode='html')
     context.bot.send_message(
-        chat_id=update.effective_chat.id, text=top10_russia(), parse_mode='html')
-    context.bot.send_photo(chat_id=update.effective_chat.id,
+        chat_id=update.effective_chat.id, text=top10_russia(), parse_mode='markdown')
+    #context.bot.send_photo(chat_id=update.effective_chat.id,
                            photo=open('russian_cases.png', 'rb'))
 
 
