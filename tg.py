@@ -3,6 +3,7 @@ from telegram.ext import Updater, CommandHandler
 
 from parse import get_html, get_total_covid, get_from_countries_covid, get_country
 from subscribe import add_member, check_member
+from parse_rus import top10_russia
 
 
 def start(update, context):
@@ -48,6 +49,8 @@ def russia(update, context):
     text_answer = f'<u>Ситуация в России:</u>\n🦠 Всего заболевших: {case}\n⚰ Умерших: {death}\n👥 Выздоровевших: {recovered}'
     context.bot.send_message(
         chat_id=update.effective_chat.id, text=text_answer, parse_mode='html')
+    context.bot.send_message(
+        chat_id=update.effective_chat.id, text=top10_russia(), parse_mode=telegram.ParseMode.MARKDOWN)
     context.bot.send_photo(chat_id=update.effective_chat.id,
                            photo=open('russian_cases.png', 'rb'))
 
