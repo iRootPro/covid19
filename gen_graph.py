@@ -18,7 +18,7 @@ def get_date_and_time():
 def create_graph_top10():
     countries = pd.read_csv('db/current_countries.csv', delimiter=';',
                             thousands=',', names=['Data', 'Location', 'Case', 'Death', 'Recovered'])
-    top10 = countries[1:11]
+    top10 = countries[2:12]
     fig1 = go.Figure(
         data=[
             go.Bar(
