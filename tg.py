@@ -9,8 +9,9 @@ from answer import search_similar_question
 
 
 def start(update, context):
-    text_answer = '```\
-		Привет. Я бот COVID-19. Я расскажу о статистике по заболеваемости короновирусом.\
+    update.message.reply_text("""
+		Привет. Я бот COVID-19. Расскажу о статистике по заболеваемости короновирусом,\
+		отвечу на твои вопросы.\
 		Можешь меня спросить о коронавирусе. Например:\
 		- *Что такое кароновирус?*\
 		- *Антибиотики эффективны от коронавируса?*\
@@ -23,9 +24,7 @@ def start(update, context):
 		/total - Пришлю тебе три графика с динамикой развития COVID-19\
 		/russia - Дам информацию об обстановке в России. Общая + TOP20 регионов по заболеваемости\
 		/top10 - Пришлю график с TOP10 странами по заболеваемости.\
-		```'
-    context.bot.send_message(
-        chat_id=update.effective_chat.id, text=text_answer, parse_mode='markdown')
+    	""", parse_mode=telegram.ParseMode.MARKDOWN)
 
 
 def info(update, context):
