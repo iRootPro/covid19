@@ -7,9 +7,7 @@ from parse_rus import top20_russia
 from graph import get_date_and_time
 from answer import search_similar_question
 
-
-def start(update, context):
-    update.message.reply_text("""
+START_HELP_MSG = """
 		🖖 Привет. Я бот COVID-19. Расскажу о статистике по заболеваемости короновирусом,\
 		отвечу на твои вопросы.\n\
 		❔ Можешь меня спросить о коронавирусе. Например:\n\
@@ -23,9 +21,16 @@ def start(update, context):
 		/info - Выведу информации о заразившихся, умерших и выздоровевших в режиме Online.\n\
 		/total - Пришлю тебе три графика с динамикой развития COVID-19.\n\
 		/russia - Дам информацию об обстановке в России. Общая + TOP20 регионов по заболеваемости.\n\
-		/top10 - Пришлю график с TOP10 странами по заболеваемости.\n\n\
+		/top10 - Пришлю график с TOP10 странами по заболеваемости.\n
+		/help - вызов данной спрвки\n\n\
 		🙏 Есть вопросы или предложения? Можете написать сюда -> @iRootPro
-    	""", parse_mode='markdown')
+    	"""
+
+def start(update, context):
+    update.message.reply_text(START_HELP_MSG, parse_mode='markdown')
+
+def help(update, context):
+	update.message.reply_text(START_HELP_MSG, parse_mode='markdown')
 
 
 def info(update, context):
@@ -78,6 +83,7 @@ def subscribe(update, context):
 def launch_bot(token_telegram):
     updater = Updater(token=token_telegram, use_context=True)
     start_handler = CommandHandler('start', start)
+    help_handler = CommandHandler('help', help)
     info_handler = CommandHandler('info', info)
     top10_handler = CommandHandler('top10', top10)
     total_handler = CommandHandler('total', total)
@@ -88,6 +94,7 @@ def launch_bot(token_telegram):
     dispatcher.add_handler(top10_handler)
     dispatcher.add_handler(info_handler)
     dispatcher.add_handler(start_handler)
+    dispatcher.add_handler(help_handler)
     dispatcher.add_handler(total_handler)
     dispatcher.add_handler(russia_handler)
     dispatcher.add_handler(subscribe_handler)
