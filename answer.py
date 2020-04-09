@@ -47,7 +47,3 @@ def search_similar_question(question_user):
     searched_question = questions[answer_number][0]
     searched_answer = questions[answer_number][1]
     return f'{searched_question}\n{searched_answer}'
-
-
-answer = search_similar_question('что такое covid-19')
-print(answer)

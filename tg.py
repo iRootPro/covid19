@@ -9,7 +9,7 @@ from answer import search_similar_question
 
 
 def start(update, context):
-	text_answer = '```\
+    text_answer = '```\
 		Привет. Я бот COVID-19. Я расскажу о статистике по заболеваемости короновирусом.\
 		Можешь меня спросить о коронавирусе. Например:\
 		- *Что такое кароновирус?*\
@@ -24,7 +24,8 @@ def start(update, context):
 		/russia - Дам информацию об обстановке в России. Общая + TOP20 регионов по заболеваемости\
 		/top10 - Пришлю график с TOP10 странами по заболеваемости.\
 		```'
-    context.bot.send_message(chat_id=update.effective_chat.id, text=text_answer, parse_mode='markdown')
+    context.bot.send_message(
+        chat_id=update.effective_chat.id, text=text_answer, parse_mode='markdown')
 
 
 def info(update, context):
@@ -58,9 +59,10 @@ def russia(update, context):
     context.bot.send_message(
         chat_id=update.effective_chat.id, text=text_detail_info, parse_mode='markdown')
 
+
 def message(update, context):
-	answer = search_similar_question(update.message.text)
-	update.message.reply_text(answer)
+    answer = search_similar_question(update.message.text)
+    update.message.reply_text(answer)
 
 
 def subscribe(update, context):
@@ -91,4 +93,3 @@ def launch_bot(token_telegram):
     dispatcher.add_handler(subscribe_handler)
     dispatcher.add_handler(message_handler)
     updater.start_polling()
-
