@@ -24,8 +24,7 @@ def start(update, context):
 		/russia - Дам информацию об обстановке в России. Общая + TOP20 регионов по заболеваемости\
 		/top10 - Пришлю график с TOP10 странами по заболеваемости.\
 		```'
-    context.bot.send_message(chat_id=update.effective_chat.id,
-                             text=text_answer, parse_mode='markdown')
+    context.bot.send_message(chat_id=update.effective_chat.id, text=text_answer, parse_mode='markdown')
 
 
 def info(update, context):
