@@ -30,10 +30,10 @@ def top20_russia():
     locations = pd.read_csv('db/russian.csv', delimiter=';',
                             thousands=' ', names=['Data', 'Location', 'Case'])
     loc_today = locations[locations.Data == get_date()][['Location', 'Case']]
-    table = loc_today[0:21]
+    table = loc_today[0:5]
     markdown_table = tabulate(table, tablefmt='github',
                               showindex=False, numalign='right')
-    return f'TOP20\n```{markdown_table}```'
+    return f'TOP5\n```{markdown_table}```'
 
 
 def main():
