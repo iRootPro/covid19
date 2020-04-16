@@ -15,18 +15,13 @@ def get_html(url):
 
 def get_info_cities(soup):
     data = []
-    divs_item = soup.find_all('div', class_='covid-panel-view__item')
-    for div_item in divs_item:
-        city = div_item.find(
-            'div', class_='covid-panel-view__item-name').get_text().strip()
-        case_div = div_item.find('div', class_='covid-panel-view__item-cases')
-        try:
-            case_div.div.decompose()
-        except AttributeError:
-            case_div.get_text()
-
+    trs_item = soup.find_all('tr', class_='covid-table-view__item')
+    for tr_item in trs_item:
+        tds = tr_item.find_all('td')
+        city = tds[0].get_text().strip()
+        case = tds[1].get_text().strip()
+        print(city, case)
         today = get_date()
-        case = case_div.get_text()
         data.append([today, city, case])
     return data
 
